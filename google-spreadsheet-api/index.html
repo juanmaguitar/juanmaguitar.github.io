@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+  <meta charset="utf-8">
+  <title>Test getting data google spreadsheets</title>
+</head>
+<body>
+  <ul></ul>
+  <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script>
+
+		// https://coderwall.com/p/duapqq/use-a-google-spreadsheet-as-your-json-backend
+		// http://cors.io/
+
+		var urlSpreadSheet = "https://spreadsheets.google.com/feeds/list/1iMWLU2KNEqBQaPxktB-BY1QuMXVz463i4HGblR3rf4s/od6/public/values";
+		var urlCorsIo = "http://cors.io/?u=";
+
+		var formatJson = "?alt=json"
+		var formatJsonP = "?alt=json-in-script"
+
+		var CorsUrl, JsonpUrl;
+
+		// CORS request
+		CorsUrl = urlCorsIo + urlSpreadSheet + formatJson;
+		$.getJSON( CorsUrl, showData );
+
+		// JSONP request
+		JsonpUrl = urlSpreadSheet + formatJsonP;
+		$.ajax({
+    		url: JsonpUrl,
+    		jsonp: "callback",
+    		dataType: "jsonp",
+		    success: showData
+		});
+
+		// Manage data function
+		function showData ( oData ) {
+			console.log ("-----------------");
+  		var aRows = oData.feed.entry;
+  		var name, repo, mail;
+  		$.each(aRows, function(index, oRow ){
+  			name = oRow.gsx$name.$t;
+  			mail = oRow.gsx$mail.$t;
+  			repo = oRow.gsx$repo.$t;
+  			console.log([name,mail,repo].join(" | "));
+  		});
+  	}
+
+
+
+  </script>
+</body>
+</html>
