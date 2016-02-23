@@ -1,7 +1,9 @@
 $( document ).ready(function() {
 
-	var clientId = "SVDR1ABESWSG1XSDO3AREN5PJDGO2PYEUXSCVOAZJIVLZV1U";
-	var clientSecret = "CFMUBOOBR5AFXTEXWKXTLOCP4UPWL0FEICEAQFSOCD4PG24X";
+    // Foursquare API Data
+	var clientId = API_DATA.clientId || "";
+	var clientSecret = API_DATA.clientSecret || "";
+
 	var urlApiSearchVenues = "https://api.foursquare.com/v2/venues/search";
 	var urlApiDetailVenue = "https://api.foursquare.com/v2/venues/<%ID%>/photos";
 
@@ -95,7 +97,6 @@ $( document ).ready(function() {
                 acc.push(oCategory.name);
                 return acc;
             },[])
-            console.log (categories);
             sListItem += sLiCategories.replace("<% CATEGORIES %>", categories.join(" | ") );
         }
         sListItem += "</ul>";
