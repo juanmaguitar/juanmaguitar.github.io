@@ -12,9 +12,13 @@ $( document ).ready(function() {
 		v: dateUpdate
 	}
 
+    var aCategories = [
+        "4bf58dd8d48988d1e5931735", // Music Venue
+        "4bf58dd8d48988d1e7931735", // Jazz Club
+        "4bf58dd8d48988d1e8931735", // Piano Bar
+        "4bf58dd8d48988d1e9931735"  // Rock Club
+    ]
     var oVenues;
-
-    //https://api.foursquare.com/v2/venues/search?client_id=SVDR1ABESWSG1XSDO3AREN5PJDGO2PYEUXSCVOAZJIVLZV1U&client_secret=CFMUBOOBR5AFXTEXWKXTLOCP4UPWL0FEICEAQFSOCD4PG24X&v=20131016&query=rock
 
     $( "button" ).click(function(e) {
 
@@ -22,25 +26,30 @@ $( document ).ready(function() {
 
         var location = $("#location").val();
         var query = $("#musicGenre").val();
+        var limit = $("#limit").val();
+        var page = $("#page").val();
 
 		var oQuery = {
 			near: location,
-			query: query
+			query: query,
+            categoryId: aCategories.join(","),
+            limit: limit,
+            offset: page
 		}
 
         $.ajax({
             url: urlApiSearchVenues,
             data : $.extend( oConfigRequest, oQuery ),
             success : function (oData) {
+
                 oVenues = oData.response.venues;
-                window.oPhotos = {};
+                $("#results").html("");
+
                 $.each(oVenues, function(index, oVenue) {
                 	var urlDetailsVenue = urlApiDetailVenue.replace("<%ID%>", oVenue.id );
 
                     function createObject (oData) {
-                        $.extend( oVenue, oData ),
-                        console.log (oVenue)
-
+                        $.extend( oVenue, oData.response );
                     }
 
         			$.ajax({
@@ -48,6 +57,7 @@ $( document ).ready(function() {
             			data : oConfigRequest,
             			success: function(oData) {
                             createObject(oData);
+                            appendToDom (oVenue);
                         }
         			})
                 })
@@ -62,32 +72,37 @@ $( document ).ready(function() {
         var sContentList = "";
 
         var sLiName = "<li><strong>name: </strong><% NAME %></li>";
-        var sLiPhone = "<li><strong>phone: </strong><% PHONE %></li>";
-        var sLiDescription = "<li><strong>description: </strong><% DESCRIPTION %></li>";
+        var sLiUrl = "<li><strong>url: </strong><% URL %></li>";
+        var sLiAdress = "<li><strong>adress: </strong><% ADRESS %></li>";
         var sLiCategories = "<li><strong>categories: </strong><% CATEGORIES %></li>";
 
-        // var aPlaces = oData.businesses;
+        var image;
 
-/*
-        $.each(aPlaces, function (index, oPlace ) {
-            var categories, sListItem = "";
-            sListItem += oPlace.image_url ? '<div><img src="' + oPlace.image_url + '"></div>' : "<div></div>";
-            sListItem += "<ul>";
-            sListItem += oPlace.name ? sLiName.replace("<% NAME %>", oPlace.name) : "";
-            sListItem += oPlace.display_phone ? sLiPhone.replace("<% PHONE %>", oPlace.display_phone) : "";
-            sListItem += oPlace.snippet_text ? sLiDescription.replace("<% DESCRIPTION %>", oPlace.snippet_text) : "";
-            if ( oPlace.categories ) {
-                categories = oPlace.categories.reduce(function (acc, aLabels, index ){
-                    acc.push(aLabels[0]);
-                    return acc;
-                },[])
-                sListItem += sLiCategories.replace("<% CATEGORIES %>", categories.join(" | ") );
-            }
-            sListItem += "</ul>";
-            sContentList += "<li>" + sListItem + "</li>";
-        })
-        $("#results").html(sContentList);
-*/
+        if (oData.photos.items.length) {
+            image = oData.photos.items[2].prefix + "100x100"+oData.photos.items[2].suffix;
+        }
+
+        var categories, sListItem = "";
+
+        sListItem += image ? '<div><img src="' + image + '"></div>' : "";
+        sListItem += "<ul>";
+        sListItem += sLiName.replace("<% NAME %>", oData.name);
+        sListItem += sLiUrl.replace("<% URL %>", oData.url);
+        sListItem += sLiAdress.replace("<% ADRESS %>", oData.location.formattedAddress.join(", ") );
+
+        if ( oData.categories ) {
+            categories = oData.categories.reduce(function (acc, oCategory, index ){
+                acc.push(oCategory.name);
+                return acc;
+            },[])
+            console.log (categories);
+            sListItem += sLiCategories.replace("<% CATEGORIES %>", categories.join(" | ") );
+        }
+        sListItem += "</ul>";
+        sContentList += "<li>" + sListItem + "</li>";
+
+        $("#results")
+            .append(sContentList);
 
     }
 
