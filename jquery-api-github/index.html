@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test Github API</title>
+</head>
+<body>
+
+	<label>Usuario en gitHub: </label>
+	<input>
+	<button>Mostrar sus repos</button>
+	<ul></ul>
+
+	<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script>
+
+	$("button").on("click", function() {
+
+	  var userGithub = $("input").val();
+		var urlApiGithub = "https://api.github.com/users/" + userGithub + "/repos"
+
+		$.ajax({
+			url: urlApiGithub,
+			success( dataFromGithubApi ) {
+				console.log (dataFromGithubApi);
+				var listElements = "";
+				$.each(dataFromGithubApi, function( index, repo ) {
+					listElements += '<li><a target="_blank" href="' + repo.html_url + '">' + repo.name + '</a></li>';
+				})
+				$("ul").html(listElements)
+			}
+		})
+
+	})
+
+	</script>
+</body>
+</html>

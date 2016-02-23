@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test AJAX</title>
+</head>
+<body>
+
+	<script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+	<script>
+
+		var filename = "colors.json";
+
+		$.ajax({
+			type: "GET",
+			url: filename,
+			async: false,
+			dataType: "json",
+			success: function(data){
+				var li = "";
+				$.each( data, function(item, value) {
+					li += "<li><strong>"+item+"</strong> => " + value + "</li>";
+				} )
+				$("body")
+					.prepend("<ul></ul>")
+					.html(li)
+			}
+		});
+
+	</script>
+</body>
+</html>

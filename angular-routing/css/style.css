@@ -1,0 +1,9 @@
+/* put your css here */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
