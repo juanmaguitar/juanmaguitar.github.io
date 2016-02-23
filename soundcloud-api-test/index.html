@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    		<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script src="http://connect.soundcloud.com/sdk.js"></script>
+    </head>
+    <body>
+
+				<label>Style in SoundCloud: </label>
+				<input>
+				<button>Show songs</button>
+
+        <ul id="results">
+
+        </ul>
+        <script>
+
+					SC.initialize({
+					  client_id: 'YOUR_CLIENT_ID'
+					});
+
+					$("button").on("click", function() {
+						var myStyle = $("input").val();
+						$('#results').html("");
+					  SC.get('/tracks', { genres: myStyle }, function(tracks) {
+					    $(tracks).each(function(index, track) {
+					      $('#results')
+					      	.append($('<li></li>')
+					      		.html( track.title + ' - ' + track.genre));
+					    });
+
+					  });
+
+					})
+
+        </script>
+    </body>
+</html>
