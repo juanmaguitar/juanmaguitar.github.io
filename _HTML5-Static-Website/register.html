@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Register Topics</title>
+  <meta name="description" content="This site holds the details on SMTP" />
+  <meta name="keywords" content="smtp,simple mail transfer protocol,mail" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html">SMTP - <span class="logo_colour">Simple Mail Transfer Protocol</span></a></h1>
+          <h2>One stop website to know all about SMTP</h2>
+        </div>
+      </div>
+      <nav id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="index.html">Home</a></li>
+          <li><a href="topic1.html">History</a></li>
+          <li><a href="topic2.html">Architecture</a></li>
+          <li class="selected"><a href="register.html">Register</a></li>
+          <li><a href="about.html">About me</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+    <div id="content_header"></div>
+    <section id="site_content">
+       <div id="sidebar_container">
+        <aside>
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Articles</h3>
+            <h4>History of SMTP</h4>
+            <h5>All you need to know about mail</h5>
+            <p>E-mail was the first "killer app" on the ARPANET, and SMTP was the scalable, standardized way to transport that e-mail. Its popularity helped drive adoption of TCP/IP and the Internet.<br /><a href="topic1.html">Read more</a></p>
+          </div>
+          <div class="sidebar_base"></div>
+        </aside>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Useful Links</h3>
+            <ul>
+              <li><a href="https://www.ietf.org/rfc/rfc0821.txt">RFC 0821</a></li>
+              <li><a href="http://www.multicians.org/thvv/mail-history.html">History of E-Mail</a></li>
+              <li><a href="http://www.ir.bbn.com/~craig/email.pdf">Technical Development of E-Mail </a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h1>Share us your thoughts!</h1>
+        <p>Please fill us your interest toward the related topics!</p>       
+          <div class="form_settings">
+            <form name="form1" method="post" action="http://mercury.ict.swin.edu.au/it000000/formtest.php">
+	<p><span><b>Topic Name : *</b></span><input required  class="contact" type="text" name="topic_name" value="" /></p>
+	<p><span><b>First Name : *</b></span><input required  class="contact" type="text" name="first_name" value="" /></p>
+	<p><span><b>Last Name : *</b></span><input required  class="contact" type="text" name="last_name" value="" /></p>
+	<p><span><b>Date of Birth : *</b></span><input required  class="contact" type="text" name="dob" value="" /></p>
+	<p><fieldset class="inline">
+		<legend><b>Gender : *</b></legend>
+		<p><input required type="radio" name="gender" value="male" id="male">
+		<label for="male" class="inline">Male</label></p>
+		<p><input required type="radio" name="gender" value="female" id="female">
+		<label for="female" class="inline">Female</label></p>
+	</fieldset>
+	<fieldset class="contact">
+	<legend><b>Address : </b></legend>
+	<p><label>Street Address : *<textarea id="address" name="address" rows=2 required></textarea></label></p>
+	<p><label>Suburb/ Town : *<input id="town" name="town" type="text" required> </label></p>
+	<p><label>State : *<input id="state" name="state" list="state-names" type="text" required> <datalist id="state-names"><option label="Melbourne" value="Melbourne"></option><option label="Hobart" value="Hobart"></option><option label="Brisbane" value="Brisbane"></option></datalist> </label></p>
+	<p><label>Post code : *<input id="postCode" name="postCode" type="text" required> </label></p>
+</fieldset>
+
+
+            <p><span><b>Phone Number : *</b></span><input required class="contact" type="text" name="phone" value="" /></p>
+            
+            <fieldset>
+	<legend><b>Sub-Topics : </b></legend>
+	<input type="checkbox" name="sub" value="POP" />POP (Post Office Protocol)<br />
+	<input type="checkbox" name="sub" value="IMAP" />IMAP (Internet Message Access Protocol)<br />
+	<input type="checkbox" name="sub" value="Mail_Client" />Mail client constructions<br />
+</fieldset>
+                <p><span><b>Comment : </b></span><textarea class="contact textarea" rows="8" cols="50" name="your_enquiry"></textarea></p>
+            <p style="padding-top: 15px"><span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="submit" /></p>
+            </form>
+          </div>       
+          <p><br /><br />NOTE: The fields marked with * are mandatory.</p>
+      </div>
+    </section>
+    
+    <!--Footer - Semantic Tag-->
+     <footer>
+      <p><a href="index.html">Home</a> | <a href="topic1.html">History</a> | <a href="topic2.html">Architecture</a> | <a href="register.html">Register</a> | <a href="about.html">About me</a></p>
+      <p>Copyright &copy; Kondasamy - Samy University</p>
+    </footer>
+  </div>
+</body>
+</html>

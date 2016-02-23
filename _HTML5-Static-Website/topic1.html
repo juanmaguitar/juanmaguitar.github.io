@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>SMTP - History</title>
+  <meta name="description" content="This site holds the details on SMTP" />
+  <meta name="keywords" content="smtp,simple mail transfer protocol,mail" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html">SMTP - <span class="logo_colour">Simple Mail Transfer Protocol</span></a></h1>
+          <h2>One stop website to know all about SMTP</h2>
+        </div>
+      </div>
+      <nav id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="index.html">Home</a></li>
+          <li  class="selected"><a href="topic1.html">History</a></li>
+          <li><a href="topic2.html">Architecture</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="about.html">About me</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+    <div id="content_header"></div>
+    <section id="site_content">
+      <div id="banner2"></div>
+	  <div id="sidebar_container">
+        <aside>
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Articles</h3>
+            <h4>History of SMTP</h4>
+            <h5>All you need to know about mail</h5>
+            <p>E-mail was the first "killer app" on the ARPANET, and SMTP was the scalable, standardized way to transport that e-mail. Its popularity helped drive adoption of TCP/IP and the Internet.<br /><a href="topic1.html">Read more</a></p>
+          </div>
+          <div class="sidebar_base"></div>
+        </aside>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Useful Links</h3>
+            <ul>
+              <li><a href="https://www.ietf.org/rfc/rfc0821.txt">RFC 0821</a></li>
+              <li><a href="http://www.multicians.org/thvv/mail-history.html">History of E-Mail</a></li>
+              <li><a href="http://www.ir.bbn.com/~craig/email.pdf">Technical Development of E-Mail </a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h1>Simple Mail Transfer Protocol (SMTP) - History</h1>
+        
+        <article>
+
+        <h2>History of SMTP</h2>
+        <p>E-mail was the first "killer app" on the ARPANET, and SMTP was the scalable, standardized way to transport that e-mail. Its popularity helped drive adoption of TCP/IP and the Internet. SMTP has scaled very well indeed: the basic protocol is still in use 22 years after its standardization and is used by more than 500 million people around the world!</p>
+        <p>This page will show the history of e-mail and key developments in e-mail history.</p>
+        </article>
+        <article>
+        <h2>Early History</h2>
+        <p>Work on network mail began in 1971 over NCP on ARPANET (pre-IP). RFCs 196, 221, 224, and 278 (all in 1971) dealt with the Mail Box Protocol, a system running over NCP/DTP or NCP/FTP and allowing an ASCII text document to be printed or stored as a file on a remote host. MBP was a subset of FTP.</p>
+
+<p>1973 saw a flurry of RFC activity to refine electronic mail over the ARPANET. Electronic mail was widely used on the ARPANET by this time. Mail was handled through FTP commands MAIL and MLFL. RFCs 453, 456, 458, 469, 475, 498, and 510 refined mail protocols and operations. RFC 469 standardized the "user@host" addressing method.</p>
+
+<p>RFC 524 (Mail Protocol, or MP) was an attempt to further define and standardize electronic mail, still making the protocol a part of FTP. It addressed forwarding mail, replying to mail, mail acknowledgement, and author verification.</p>
+
+<p>RFC 539 was Dr. Jonathan Postel's first forray into electronic mail. It was a response to RFC 524. RFC 555 was a response to Postel's response.</p>
+
+<p>From 1974 to 1980, these RFCs about mail protocols were issued: RFC 630, 644, 720, 751, 754, 763, and 771. Notable among these were:</p>
+<ul>
+	<li>RFC 644 - addressing how to authenticate e-mail signatures</li>
+	<li>RFC 771 - How to transition existing e-mail protocols and systems from ARPANET/NCP to Internet/TCP.</li>
+</ul>
+
+<p>Modern SMTP protocol begins in 1980 in an RFC by Dr. Jon Postel. RFC 772, Mail Transfer Protocol was an attempt at making a mail protocol that was independent of FTP. It is this RFC that will evolve into the first killer app, SMTP e-mail. MTP used port/socket 57, and had 3-digit response codes. It was designed to be independent of the network and transport layers, and work between different operating systems.</p>
+
+<p>RFC 773 - Comments on the mail transition strategy outlined in RFC 771. RFC 780 (1981) MTP refined (Postel) RFC 784, 785, and 786 (1981) dealt with implementing MTP on a DEC TOPS-20 operating system. RFC 788 (1981) - Postel introduces SMTP, the Simple Mail Transfer Protocol. It will run on port/socket 25 and contains all the basic commands that are used today.</p>
+
+<p>RFC 799 (1981) is also very important in its relationship to mail, since it discusses moving to a hierarchical name space (Internet Name Domains) and the implications for e-mail and e-mail addressing.</p>
+
+<p>RFC 805 (1982) were notes from a big meeting on computer mail. The most important outcome of this meeting was a consensus on using the user@host.domain addressing scheme.</p>
+
+<p>RFC 807 - Multimedia mail meeting notes RFC 808 - Summary of a computer mail services meeting in 1979</p>
+
+<p>Then came the modern era of SMTP e-mail, with the standardization of RFC 821 (SMTP) and RFC 822 (Internet mail format).</p>
+        </article>
+      </div>
+    </section>
+    
+    <!--Footer - Semantic Tag-->
+     <footer>
+      <p><a href="index.html">Home</a> | <a href="topic1.html">History</a> | <a href="topic2.html">Architecture</a> | <a href="register.html">Register</a> | <a href="about.html">About me</a></p>
+      <p>Copyright &copy; Kondasamy - Samy University</p>
+    </footer>
+  </div>
+</body>
+</html>

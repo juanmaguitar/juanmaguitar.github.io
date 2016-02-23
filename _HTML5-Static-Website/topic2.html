@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>SMTP - Architecture</title>
+  <meta name="description" content="This site holds the details on SMTP" />
+  <meta name="keywords" content="smtp,simple mail transfer protocol,mail" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html">SMTP - <span class="logo_colour">Simple Mail Transfer Protocol</span></a></h1>
+          <h2>One stop website to know all about SMTP</h2>
+        </div>
+      </div>
+      <nav id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="index.html">Home</a></li>
+          <li><a href="topic1.html">History</a></li>
+          <li class="selected"><a href="topic2.html">Architecture</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="about.html">About me</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+    <div id="content_header"></div>
+    <section id="site_content">
+      <div id="banner3"></div>
+	  <div id="sidebar_container">
+        <aside>
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Articles</h3>
+            <h4>History of SMTP</h4>
+            <h5>All you need to know about mail</h5>
+            <p>E-mail was the first "killer app" on the ARPANET, and SMTP was the scalable, standardized way to transport that e-mail. Its popularity helped drive adoption of TCP/IP and the Internet.<br /><a href="topic1.html">Read more</a></p>
+          </div>
+          <div class="sidebar_base"></div>
+        </aside>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Useful Links</h3>
+            <ul>
+              <li><a href="https://www.ietf.org/rfc/rfc0821.txt">RFC 0821</a></li>
+              <li><a href="http://www.multicians.org/thvv/mail-history.html">History of E-Mail</a></li>
+              <li><a href="http://www.ir.bbn.com/~craig/email.pdf">Technical Development of E-Mail </a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h1>Simple Mail Transfer Protocol (SMTP) - Architecture & Technical Specifications</h1>
+        
+        <article>
+
+        
+        <p>Client computers communicate with e-mail servers (SMTP servers) using the SMTP protocol. SMTP is a relatively simple, text-based protocol, that use a limited set of commands and reply codes for its communication. The SMTP protocol is defined in <a href="http://www.ietf.org/rfc/rfc2821.txt">RFC 2821</a> - Simple Mail Transfer Protocol. The objective of Simple Mail Transfer Protocol is to transfer e-mail messages reliably, efficiently and easily. SMTP is independent of the particular transmission subsystem and requires only a reliable data connection.</p>
+        </article>
+        <article>
+        <h2>Terms related to SMTP</h2>
+<p>The terms below are more commonly used today when discussing e-mail protocols, applications, and models:</p>
+
+<h3>Message User Agent (MUA)</h3>
+
+<p>A process which acts (usually on behalf of a user) to compose and submit new messages, and process delivered messages. In the split- MUA model, POP or IMAP is used to access delivered messages.</p>
+
+<h3>Message Transfer Agent (MTA)</h3>
+
+<p>A process which conforms to [SMTP-MTA], which acts as an SMTP server to accept messages from an MSA or another MTA, and either delivers them or acts as an SMTP client to relay them to another MTA.</p>
+
+<h3>Message Submission Agent (MSA)</h3>
+
+<p>A process which conforms to this specification, which acts as a submission server to accept messages from MUAs, and either delivers them or acts as an SMTP client to relay them to an MTA.</p>
+
+<h3>Mail Delivery Agent (MDA)</h3>
+
+<p>The MDA is responsible for the actual delivery of messages into a user's mail box. While this may seem like a frivolous task, the important aspect of this component is that the delivery process is separate from the very complex MTA. The main concept that the MDA defines is the structure of the mail store. Modern MDAs usually include the ability to filter mail and in some cases to reformat its contents.</p>
+
+<h3>Mail Access Agent (MAA)</h3>
+
+<p>The MAA is a new component added to the process about 15 years ago. MAAs are to a certain extent an extension of the MDA. MAAs provide remote access to a user's mail. MAAs speak one or more of a variety of Mail Access Protocols. The two most common protocols today are POP3 and IMAP4. These protocols have evolved significantly over time. The key functions of an MAA are to authenticate a user and deliver e-mail, but some MAA's provide a much more sophisticated set of features for accessing one's e-mail.</p>
+        </article>
+        <article>
+            <h2>The SMTP Model</h2>
+<p>The SMTP design is based on the following model of communication:</p>  
+<p>As the result of a user mail request, the sender-SMTP establishes a two-way transmission channel to a receiver-SMTP.  The receiver-SMTP may be either the ultimate destination or an intermediate.  SMTP commands are generated by the sender-SMTP and sent to the receiver-SMTP.  SMTP replies are sent from the receiver-SMTP to the sender-SMTP in response to the commands.  Once the transmission channel is established, the SMTP-sender sends a MAIL command indicating the sender of the mail.  If the SMTP-receiver can accept mail it responds with an OK reply.  The SMTP-sender then sends a RCPT command identifying a recipient of the mail.</p>  
+<p>If the SMTP-receiver can accept mail for that recipient it responds with an OK reply; if not, it responds with a reply rejecting that recipient (but not the whole mail transaction).  The SMTP-sender and SMTP-receiver may negotiate several recipients.  When the recipients have been negotiated the SMTP-sender sends the mail data, terminating with a special sequence.  If the SMTP-receiver successfully processes the mail data it responds with an OK reply.  The dialog is purposely lock-step, one-at-a-time.</p>
+       <span class="left"><img src="images/Architecture.png" alt="The SMTP Model" /></span>
+        </article>
+        <article>
+	<h2>The SMTP Commands</h2>
+	<p>The SMTP protocol consists, in its basic form, of about ten commands that is used for the communication between the client and the server. Below are some of the commands used in an SMTP communication described:</p>
+
+	<table style="width:100%; border-spacing:0;">
+		<tr><th>Command</th><th>Description</th></tr>
+		<tr><td>HELO / EHLO</td><td>This command is used to identify the sender (client) to the SMTP server</td></tr>
+		<tr><td>MAIL FROM:</td><td>Specifies the e-mail address of the sender</td></tr>
+		<tr><td>RCPT TO</td><td>Specifies the e-mail address of the recipient</td></tr>
+		<tr><td>DATA</td><td>Starts the transfer of the actual data (body text, attachments etc)</td></tr>
+		<tr><td>RSET (RESET)</td><td>Specifies that the current mail transaction will be aborted</td></tr>
+		<tr><td>VRFY (VERIFY)</td><td>Asks the receiver to confirm that the argument identifies a user or mailbox</td></tr>
+		<tr><td>HELP</td><td>This command causes the server to send helpful information to the client</td></tr>
+		<tr><td>QUIT</td><td>Quits the session</td></tr>
+	</table>
+</article>
+      </div>
+    </section>
+    
+    <!--Footer - Semantic Tag-->
+     <footer>
+      <p><a href="index.html">Home</a> | <a href="topic1.html">History</a> | <a href="topic2.html">Architecture</a> | <a href="register.html">Register</a> | <a href="about.html">About me</a></p>
+      <p>Copyright &copy; Kondasamy - Samy University</p>
+    </footer>
+  </div>
+</body>
+</html>

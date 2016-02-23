@@ -1,0 +1,24 @@
+<!doctype html>
+<html ng-app='moviesDBApp'>
+  <head>
+    <title>Angular Movies DB Project</title>
+	<link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+
+	<script src="js/vendor/angular.min.js"></script>
+  <script src="js/vendor/angular-route.min.js"></script>
+	<script src="js/vendor/jquery-1.11.3.min.js"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+  </head>
+  <body ng-controller='MovieListController'>
+        <h1>{{title}} </h1>
+        <div  ng-repeat="movie in movieList">
+          <img class='img-responsive' ng-src="http://image.tmdb.org/t/p/w370/{{movie.poster_path}}">
+          <h3>{{movie.title}}</h3>
+		</div>
+  </body>
+  <script src='js/config.js'></script>
+  <script src='js/app.js'></script>
+  <script src='js/controller.js'></script>
+  <script src='js/service.js'></script>
+</html>

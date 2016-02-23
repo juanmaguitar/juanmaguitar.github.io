@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>SMTP - Home</title>
+  <meta name="description" content="This site holds the details on SMTP" />
+  <meta name="keywords" content="smtp,simple mail transfer protocol,mail" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html">SMTP - <span class="logo_colour">Simple Mail Transfer Protocol</span></a></h1>
+          <h2>One stop website to know all about SMTP</h2>
+        </div>
+      </div>
+      <nav id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li class="selected"><a href="index.html">Home</a></li>
+          <li><a href="topic1.html">History</a></li>
+          <li><a href="topic2.html">Architecture</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="about.html">About me</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+    <div id="content_header"></div>
+    <section id="site_content">
+      <div id="banner"></div>
+	  <div id="sidebar_container">
+        <aside>
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Articles</h3>
+            <h4>History of SMTP</h4>
+            <h5>All you need to know about mail</h5>
+            <p>E-mail was the first "killer app" on the ARPANET, and SMTP was the scalable, standardized way to transport that e-mail. Its popularity helped drive adoption of TCP/IP and the Internet.<br /><a href="topic1.html">Read more</a></p>
+          </div>
+          <div class="sidebar_base"></div>
+        </aside>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Useful Links</h3>
+            <ul>
+              <li><a href="https://www.ietf.org/rfc/rfc0821.txt">RFC 0821</a></li>
+              <li><a href="http://www.multicians.org/thvv/mail-history.html">History of E-Mail</a></li>
+              <li><a href="http://www.ir.bbn.com/~craig/email.pdf">Technical Development of E-Mail </a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h1>Simple Mail Transfer Protocol (SMTP)</h1>
+         <blockquote> 
+	        <p>Simple Mail Transfer Protocol (SMTP) is an Internet standard for electronic mail (e-mail) transmission.</p>
+            
+                <cite>- <a href="http://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">Wikipedia</a></cite>
+            
+        </blockquote>
+        
+        <h2>What is SMTP?</h2>
+        <p>SMTP is a relatively simple, text-based protocol, in which a mail sender communicates with a mail receiver by issuing simple command strings and supplying necessary data over a reliable ordered data stream channel, typically Transmission Control Protocol (TCP) connection.</p>
+        <p>When we send an e-mail message from our computer to another computer, it will go trough many different servers before it actually reaches our recipient's computer. The first stop for our e-mail message is an SMTP e-mail server. This server communicates directly with our computer using a protocol named SMTP. It is the de facto standard for e-mail transmission from clients to mail servers via the Internet. SMTP is an old protocol and was used already in the 1980s to transfer messages between computers.</p>
+        <ul>
+          <li>Its objective is to transfer mail reliably and efficiently</li>
+          <li>SMTP is the IETF's Standard Number 10, or STD0010</li>
+          <li>Standard e-mail formats are also closely related to the SMTP standard</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!--Footer - Semantic Tag-->
+     <footer>
+      <p><a href="index.html">Home</a> | <a href="topic1.html">History</a> | <a href="topic2.html">Architecture</a> | <a href="register.html">Register</a> | <a href="about.html">About me</a></p>
+      <p>Copyright &copy; Kondasamy - Samy University</p>
+    </footer>
+  </div>
+</body>
+</html>

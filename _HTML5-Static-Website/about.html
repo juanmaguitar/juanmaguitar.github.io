@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>About me!</title>
+  <meta name="description" content="This site holds the details on SMTP" />
+  <meta name="keywords" content="smtp,simple mail transfer protocol,mail" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html">SMTP - <span class="logo_colour">Simple Mail Transfer Protocol</span></a></h1>
+          <h2>One stop website to know all about SMTP</h2>
+        </div>
+      </div>
+      <nav id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="index.html">Home</a></li>
+          <li><a href="topic1.html">History</a></li>
+          <li><a href="topic2.html">Architecture</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li class="selected"><a href="about.html">About me</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+    <div id="content_header"></div>
+    <section id="site_content">
+       <div id="sidebar_container">
+        <aside>
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>Articles</h3>
+            <h4>History of SMTP</h4>
+            <h5>All you need to know about mail</h5>
+            <p>E-mail was the first "killer app" on the ARPANET, and SMTP was the scalable, standardized way to transport that e-mail. Its popularity helped drive adoption of TCP/IP and the Internet.<br /><a href="topic1.html">Read more</a></p>
+          </div>
+          <div class="sidebar_base"></div>
+        </aside>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>Useful Links</h3>
+            <ul>
+              <li><a href="https://www.ietf.org/rfc/rfc0821.txt">RFC 0821</a></li>
+              <li><a href="http://www.multicians.org/thvv/mail-history.html">History of E-Mail</a></li>
+              <li><a href="http://www.ir.bbn.com/~craig/email.pdf">Technical Development of E-Mail </a></li>
+              
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        
+      </div>
+      <div id="content">
+        <!-- Edit the contents here -->
+        <h1>All about me!</h1>
+          <span class="center"><h2>Kondasamy</h2></span>
+          <p><span class="left">Course Name</span><span class="right">Student ID</span></p>
+          <p><span class="left"><img id="my_photo" src='images/Kondasamy.png'/></span></p>
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><p><span class="center">Samy Timetable</span></p>
+          <!--Edit Timetable-->
+          	<table style="width:100%; border-spacing:0;">
+                <tr><th>Command</th><th>Description</th></tr>
+                <tr><td>HELO / EHLO</td><td>This command is used to identify the sender (client) to the SMTP server</td></tr>
+                <tr><td>MAIL FROM:</td><td>Specifies the e-mail address of the sender</td></tr>
+                <tr><td>RCPT TO</td><td>Specifies the e-mail address of the recipient</td></tr>
+	        </table>
+          <p><span class="center"><a href="mailto:Kondasamy@Samy.com">Send an Email </a></span></p>
+
+      </div>
+    </section>
+    
+    <!--Footer - Semantic Tag-->
+     <footer>
+      <p><a href="index.html">Home</a> | <a href="topic1.html">History</a> | <a href="topic2.html">Architecture</a> | <a href="register.html">Register</a> | <a href="about.html">About me</a></p>
+      <p>Copyright &copy; Kondasamy - Samy University</p>
+      <p><a href="mailto:Kondasamy@Samy.com">Mail me! </a></p>
+    </footer>
+  </div>
+</body>
+</html>
