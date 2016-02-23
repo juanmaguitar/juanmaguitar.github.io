@@ -28,22 +28,23 @@ $( document ).ready(function() {
 
         var location = $("#location").val();
         var query = $("#musicGenre").val();
-        var limit = $("#limit").val();
-        var page = $("#page").val();
+        var limit = $("#limit").val() || 100;
+        var page = $("#page").val() || 1;
 
 		var oQuery = {
 			near: location,
 			query: query,
             categoryId: aCategories.join(","),
             limit: limit,
-            offset: page
+            offset: page,
+            intent: 'match'
 		}
 
         $.ajax({
             url: urlApiSearchVenues,
             data : $.extend( oConfigRequest, oQuery ),
             success : function (oData) {
-
+                console.log (oData);
                 oVenues = oData.response.venues;
                 $("#results").html("");
 
