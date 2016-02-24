@@ -1,54 +1,88 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    		<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
-        <script src="http://connect.soundcloud.com/sdk.js"></script>
-    </head>
-    <body>
+	<head>
+		<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+		<script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+		<style>
+			.logo { width: 200px; margin:0 20px; }
+			form fieldset { margin: 20px 0; }
+			form fieldset  ul { list-style: none; }
+			form fieldset ul li { margin: 10px 0; }
+			form label { vertical-align: top; }
 
+			#results { list-style: none; }
+			#results > li {
+				border:1px solid #ccc; padding: 10px; width: 500px; display:flex;
+				flex-wrap:wrap; justify-content: flex-start ;
+			}
+			#results li > div { width: 30%; margin:0; padding:0; }
+			#results li > ul { width: 70%; margin:0; padding:0; list-style: none; }
+		</style>
+	</head>
+	<body>
 
-			<form>
-			    <fieldset>
-			        <legend>Insert your SoundCloud API data</legend>
-			            <ul>
-			                <li>
-			                    <label>Client ID</label>
-			                    <input id="client_id">
-			                </li>
-			            </ul>
-			    </fieldset>
-			</form>
+		<img class="logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/9/92/SoundCloud_logo.svg/1280px-SoundCloud_logo.svg.png">
 
-				<label>Style in SoundCloud: </label>
-				<input>
-				<button>Show songs</button>
+		<form>
+			<fieldset>
+					<legend>Insert your SoundCloud API data</legend>
+					<ul>
+							<li>
+									<label>Client ID</label>
+									<input id="client_id">
+							</li>
+					</ul>
+			</fieldset>
 
-        <ul id="results">
+			<fieldset>
+				<legend>Insert your request data</legend>
+				<ul>
+						<li>
+								<label>Style in SoundCloud: </label>
+								<input id="style">
+						</li>
+						<li>
+							<button>Search</button>
+						</li>
+				</ul>
+			</fieldset>
+		</form>
 
-        </ul>
-        <script>
+		<ul id="results"></ul>
 
-					$("button").on("click", function() {
+		<script>
 
-						var sClientId = $("client_id").val();
+			$("button").on("click", function(e) {
 
-						SC.initialize({
-						  client_id: sClientId
-						});
+				e.preventDefault();
 
-						var myStyle = $("input").val();
-						$('#results').html("");
-					  SC.get('/tracks', { genres: myStyle }, function(tracks) {
-					    $(tracks).each(function(index, track) {
-					      $('#results')
-					      	.append($('<li></li>')
-					      		.html( track.title + ' - ' + track.genre));
-					    });
+				var sClientId = $("#client_id").val();
 
-					  });
+				if (sClientId=="") {
+					alert("Please, write a valid SoundCloud API KEY");
+					return false;
+				}
 
-					})
+				SC.initialize({
+					client_id: sClientId
+				});
 
-        </script>
-    </body>
+				var myStyle = $("#style").val();
+				$('#results').html("");
+
+				function appendTracks(tracks) {
+					$(tracks).each(function(index, track) {
+						$('#results')
+							.append($('<li></li>')
+								.html( track.title + ' - ' + track.genre));
+					});
+				}
+
+				SC.get('/tracks', { genres: myStyle })
+					.then(appendTracks);
+
+			})
+
+		</script>
+	</body>
 </html>

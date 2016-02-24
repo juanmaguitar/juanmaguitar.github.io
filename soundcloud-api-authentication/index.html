@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+		<script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+		<style>
+			.logo { width: 200px; margin:0 20px; }
+			form fieldset { margin: 20px 0; }
+			form fieldset  ul { list-style: none; }
+			form fieldset ul li { margin: 10px 0; }
+			form label { vertical-align: top; }
+
+			#results { margin:20px 0; }
+			.hidden { display: none; }
+			/*
+				#results li a::after { content: 'play'; color:grey; font-size: 12px; margin-left:10px; }
+				#results li a.playing::after { content: 'stop'; color:grey; font-size: 12px; margin-left:10px; }
+			*/
+		</style>
+	</head>
+	<body>
+
+		<img class="logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/9/92/SoundCloud_logo.svg/1280px-SoundCloud_logo.svg.png">
+
+		<form>
+			<fieldset>
+					<legend>Insert your SoundCloud API data</legend>
+					<ul>
+							<li>
+									<label>Client ID</label>
+									<input id="client_id" size="50">
+							</li>
+					</ul>
+			</fieldset>
+
+			<fieldset>
+				<legend>Connect to SoundCloud</legend>
+				<ul>
+						<li>
+							<button>connect!</button>
+						</li>
+				</ul>
+			</fieldset>
+		</form>
+
+		<select class="hidden" id="results"></select>
+
+		<iframe id="sc-widget" src="" width="100%" height="200" scrolling="no" frameborder="no"></iframe>
+
+		<script>
+
+			var urlPlayer = "https://w.soundcloud.com/player/";
+			var sClientId = localStorage.getItem("soundcloudClientId");
+			var aTracks; // store streams ready to be played;
+			sClientId ? $("#client_id").val(sClientId) : null;
+
+			$("button").on("click", function(e) {
+
+				e.preventDefault();
+
+				var sClientId = $("#client_id").val();
+
+				if (sClientId=="") {
+					alert("Please, write a valid SoundCloud API KEY");
+					return false;
+				}
+
+				SC.initialize({
+					client_id: sClientId,
+					redirect_uri: 'http://localhost/callback.html'
+				});
+
+				// initiate auth popup
+				SC.connect()
+					.then(function() {
+						localStorage.setItem("soundcloudClientId",sClientId);
+						return SC.get('/me');
+					})
+					.then(function(me) {
+						alert('Hello, ' + me.username);
+					})
+					.then(function() {
+						return SC.get('/me/tracks');
+					})
+					.then(function(tracks) {
+						var sLiTracks = '<option>Choose a song...</option>';;
+						var sLiTemplate = '<option value="<%URL%>"><%TRACK-NAME%></option>';
+						var sLiCurrentTrack = "";
+						$.each(tracks, function(index, oTrack){
+							sLiCurrentTrack = sLiTemplate;
+							sLiCurrentTrack = sLiCurrentTrack.replace("<%URL%>", oTrack.permalink_url);
+							sLiCurrentTrack = sLiCurrentTrack.replace("<%TRACK-NAME%>", oTrack.title);
+							sLiTracks += sLiCurrentTrack;
+							console.log(oTrack);
+						});
+
+						$("#results")
+							.html(sLiTracks)
+							.removeClass("hidden");
+					})
+			})
+
+			$("#results").on("change", function(e) {
+				$("iframe")[0].src = urlPlayer + "?url=" + this.value;
+			})
+
+		</script>
+	</body>
+</html>
