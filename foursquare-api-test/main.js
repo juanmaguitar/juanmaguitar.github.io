@@ -13,7 +13,7 @@ $( document ).ready(function() {
 		var clientSecret = $("#client_secret").val();
 		var dateUpdate = "20131016";
 
-		if ( clientId || clientSecret ) {
+		if ( clientId=="" || clientSecret=="" ) {
 			alert("please insert your Foursquare API data");
 			return false;
 		}
