@@ -6,36 +6,56 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
 
-    <script src="config.js"></script>
     <script src="main.js"></script>
 
     <style>
-        form > ul { list-style: none; }
+        form fieldset > ul { list-style: none; }
         #results { list-style: none; }
         #results > li {
         	border:1px solid #ccc; padding: 10px; width: 500px; display:flex;
         	flex-wrap:wrap; justify-content: flex-start ;
         }
         #results li > div { width: 30%; margin:0; padding:0; }
-        #results li > ul { width: 70%; margin:0; padding:0; }
+        #results li > ul { width: 70%; margin:0; padding:0; list-style: none; }
 
     </style>
 </head>
 
 <body>
+
     <form>
-        <ul>
-            <li>
-                <label>Limit & Page</label>
-                <input id="limit"><input id="page">
-            </li>
-            <li>
-                <label>Add a Location</label>
-                <input id="location" value="dublin, ireland">
-            </li>
-            <li>
-                <button>Search</button>
-            </li>
+        <fieldset>
+            <legend>Insert your Foursquare API data</legend>
+                <ul>
+                    <li>
+                        <label>Client ID</label>
+                        <input id="client_id">
+                    </li>
+                    <li>
+                        <label>Client Secret</label>
+                        <input id="client_secret">
+                    </li>
+                </ul>
+        </fieldset>
+    </form>
+
+    <form>
+        <fieldset>
+            <legend>Insert your request data</legend>
+            <ul>
+                <li>
+                    <label>Limit & Page</label>
+                    <input id="limit"><input id="page">
+                </li>
+                <li>
+                    <label>Add a Location</label>
+                    <input id="location" value="dublin, ireland">
+                </li>
+                <li>
+                    <button>Search</button>
+                </li>
+            </ul>
+        </fieldset>
     </form>
 
     <ul id="results"></ul>

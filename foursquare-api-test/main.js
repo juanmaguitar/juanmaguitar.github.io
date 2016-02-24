@@ -1,19 +1,7 @@
 $( document ).ready(function() {
 
-    // Foursquare API Data
-	var clientId = API_DATA.clientId || "";
-	var clientSecret = API_DATA.clientSecret || "";
-
 	var urlApiSearchVenues = "https://api.foursquare.com/v2/venues/search";
 	var urlApiDetailVenue = "https://api.foursquare.com/v2/venues/<%ID%>/photos";
-
-	var dateUpdate = "20131016";
-	var oConfigRequest = {
-		client_id : clientId,
-		client_secret: clientSecret,
-		v: dateUpdate
-	}
-
     var aCategories = [
         "4bf58dd8d48988d1e5931735", // Music Venue
         "4bf58dd8d48988d1e7931735", // Jazz Club
@@ -26,6 +14,22 @@ $( document ).ready(function() {
 
         e.preventDefault();
 
+        if ( clientId || clientSecret ) {
+            alert("please insert your Foursquare API data");
+            return false;
+        }
+
+        // Foursquare API Data
+        var clientId = $("#client_id").val();
+        var clientSecret = $("#client_secret").val();
+        var dateUpdate = "20131016";
+
+        var oConfigRequest = {
+            client_id : clientId,
+            client_secret: clientSecret,
+            v: dateUpdate
+        }
+
         var location = $("#location").val();
         var query = $("#musicGenre").val();
         var limit = $("#limit").val() || 100;
@@ -36,9 +40,11 @@ $( document ).ready(function() {
 			query: query,
             categoryId: aCategories.join(","),
             limit: limit,
-            offset: page,
-            intent: 'match'
+            offset: page
 		}
+
+        console.log (oConfigRequest);
+        console.log (oQuery);
 
         $.ajax({
             url: urlApiSearchVenues,
