@@ -4,7 +4,7 @@ $( document ).ready(function() {
 	var urlApiDetailVenue = "https://api.foursquare.com/v2/venues/<%ID%>/photos";
 	var oVenues;
 
-		$( "button" ).click(function(e) {
+	$( "button" ).click(function(e) {
 
 		e.preventDefault();
 
