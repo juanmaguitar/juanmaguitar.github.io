@@ -1,82 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Project</title>
+	<meta charset="UTF-8">
+	<title>My Project</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
 
-    <script src="main.js"></script>
+	<script src="main.js"></script>
 
-    <style>
-        .logo { width: 200px; }
-        form { margin: 20px 0; }
-        form fieldset  ul { list-style: none; }
-        form fieldset ul li { margin: 10px 0; }
-        form label { vertical-align: top; }
+	<style>
+		.logo { width: 200px; }
+		form { margin: 20px 0; }
+		form fieldset  ul { list-style: none; }
+		form fieldset ul li { margin: 10px 0; }
+		form label { vertical-align: top; }
 
-        #results { list-style: none; }
-        #results > li {
-        	border:1px solid #ccc; padding: 10px; width: 500px; display:flex;
-        	flex-wrap:wrap; justify-content: flex-start ;
-        }
-        #results li > div { width: 30%; margin:0; padding:0; }
-        #results li > ul { width: 70%; margin:0; padding:0; list-style: none; }
+		#results { list-style: none; }
+		#results > li {
+			border:1px solid #ccc; padding: 10px; width: 500px; display:flex;
+			flex-wrap:wrap; justify-content: flex-start ;
+		}
+		#results li > div { width: 30%; margin:0; padding:0; }
+		#results li > ul { width: 70%; margin:0; padding:0; list-style: none; }
 
 
-    </style>
+	</style>
 </head>
 
 <body>
 
-    <img class="logo" src="http://static.betazeta.com/www.wayerless.com/up/2014/07/NUEVO-LOGO-FOURSQUARE-WAYERLESS-HD-960x623.jpg">
+	<img class="logo" src="http://static.betazeta.com/www.wayerless.com/up/2014/07/NUEVO-LOGO-FOURSQUARE-WAYERLESS-HD-960x623.jpg">
 
-    <form>
-        <fieldset>
-            <legend>Insert your Foursquare API data</legend>
-                <ul>
-                    <li>
-                        <label>Client ID</label>
-                        <input id="client_id">
-                    </li>
-                    <li>
-                        <label>Client Secret</label>
-                        <input id="client_secret">
-                    </li>
-                </ul>
-        </fieldset>
-    </form>
+	<form>
+		<fieldset>
+			<legend>Insert your Foursquare API data</legend>
+				<ul>
+					<li>
+						<label>Client ID</label>
+						<input id="client_id">
+					</li>
+					<li>
+						<label>Client Secret</label>
+						<input id="client_secret">
+					</li>
+				</ul>
+		</fieldset>
+	</form>
 
-    <form>
-        <fieldset>
-            <legend>Insert your request data</legend>
-            <ul>
-                <li>
-                    <label>Limit & Page</label>
-                    <input id="limit"><input id="page">
-                </li>
-                <li>
-                    <label>Select Categories</label>
-                    <select id="categories" multiple>
-                        <option value="4bf58dd8d48988d1e5931735">Music Venue</option>
-                        <option value="4bf58dd8d48988d1e7931735" selected>Jazz Club</option>
-                        <option value="4bf58dd8d48988d1e8931735" selected>Piano Bar</option>
-                        <option value="4bf58dd8d48988d1e9931735">Rock Club</option>
-                    </select>
-                </li>
-                <li>
-                    <label>Add a Location</label>
-                    <input id="location" value="dublin, ireland">
-                </li>
+	<form>
+		<fieldset>
+			<legend>Insert your request data</legend>
+			<ul>
+				<li>
+					<label>Limit & Page</label>
+					<input id="limit"><input id="page">
+				</li>
+				<li>
+					<label>Select Categories</label>
+					<select id="categories" multiple>
+						<option value="4bf58dd8d48988d1e5931735">Music Venue</option>
+						<option value="4bf58dd8d48988d1e7931735" selected>Jazz Club</option>
+						<option value="4bf58dd8d48988d1e8931735" selected>Piano Bar</option>
+						<option value="4bf58dd8d48988d1e9931735">Rock Club</option>
+					</select>
+				</li>
+				<li>
+					<label>Add a Location</label>
+					<input id="location" value="dublin, ireland">
+				</li>
 
-                <li>
-                    <button>Search</button>
-                </li>
-            </ul>
-        </fieldset>
-    </form>
+				<li>
+					<button>Search</button>
+				</li>
+			</ul>
+		</fieldset>
+	</form>
 
-    <ul id="results"></ul>
+	<ul id="results"></ul>
 
 </body>
 </html>

@@ -6,6 +6,19 @@
     </head>
     <body>
 
+
+			<form>
+			    <fieldset>
+			        <legend>Insert your SoundCloud API data</legend>
+			            <ul>
+			                <li>
+			                    <label>Client ID</label>
+			                    <input id="client_id">
+			                </li>
+			            </ul>
+			    </fieldset>
+			</form>
+
 				<label>Style in SoundCloud: </label>
 				<input>
 				<button>Show songs</button>
@@ -15,11 +28,14 @@
         </ul>
         <script>
 
-					SC.initialize({
-					  client_id: 'YOUR_CLIENT_ID'
-					});
-
 					$("button").on("click", function() {
+
+						var sClientId = $("client_id").val();
+
+						SC.initialize({
+						  client_id: sClientId
+						});
+
 						var myStyle = $("input").val();
 						$('#results').html("");
 					  SC.get('/tracks', { genres: myStyle }, function(tracks) {
