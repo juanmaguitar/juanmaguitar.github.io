@@ -4,6 +4,11 @@ $( document ).ready(function() {
 	var urlApiDetailVenue = "https://api.foursquare.com/v2/venues/<%ID%>/photos";
 	var oVenues;
 
+	var clientId = localStorage.getItem("foursquareClientId");
+	var clientSecret = localStorage.getItem("foursquareClientSecret");
+	clientId ? $("#client_id").val(clientId) : null;
+	clientSecret ? $("#client_secret").val(clientSecret) : null;
+
 	$( "button" ).click(function(e) {
 
 		e.preventDefault();
@@ -46,6 +51,10 @@ $( document ).ready(function() {
 			data : $.extend( oConfigRequest, oQuery ),
 			success : function (oData) {
 				console.log (oData);
+
+				localStorage.setItem("foursquareClientId",clientId);
+				localStorage.setItem("foursquareClientSecret",clientSecret);
+
 				oVenues = oData.response.venues;
 				$("#results").html("");
 

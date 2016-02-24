@@ -52,6 +52,9 @@
 
 		<script>
 
+			var sClientId = localStorage.getItem("soundcloudClientId");
+			sClientId ? $("#client_id").val(sClientId) : null;
+
 			$("button").on("click", function(e) {
 
 				e.preventDefault();
@@ -79,6 +82,10 @@
 				}
 
 				SC.get('/tracks', { genres: myStyle })
+					.then(function(tracks){
+						localStorage.setItem("soundcloudClientId",sClientId);
+						return tracks;
+					})
 					.then(appendTracks);
 
 			})
