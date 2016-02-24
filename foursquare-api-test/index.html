@@ -9,7 +9,12 @@
     <script src="main.js"></script>
 
     <style>
-        form fieldset > ul { list-style: none; }
+        .logo { width: 200px; }
+        form { margin: 20px 0; }
+        form fieldset  ul { list-style: none; }
+        form fieldset ul li { margin: 10px 0; }
+        form label { vertical-align: top; }
+
         #results { list-style: none; }
         #results > li {
         	border:1px solid #ccc; padding: 10px; width: 500px; display:flex;
@@ -18,10 +23,13 @@
         #results li > div { width: 30%; margin:0; padding:0; }
         #results li > ul { width: 70%; margin:0; padding:0; list-style: none; }
 
+
     </style>
 </head>
 
 <body>
+
+    <img class="logo" src="http://static.betazeta.com/www.wayerless.com/up/2014/07/NUEVO-LOGO-FOURSQUARE-WAYERLESS-HD-960x623.jpg">
 
     <form>
         <fieldset>
@@ -48,9 +56,19 @@
                     <input id="limit"><input id="page">
                 </li>
                 <li>
+                    <label>Select Categories</label>
+                    <select id="categories" multiple>
+                        <option value="4bf58dd8d48988d1e5931735">Music Venue</option>
+                        <option value="4bf58dd8d48988d1e7931735" selected>Jazz Club</option>
+                        <option value="4bf58dd8d48988d1e8931735" selected>Piano Bar</option>
+                        <option value="4bf58dd8d48988d1e9931735">Rock Club</option>
+                    </select>
+                </li>
+                <li>
                     <label>Add a Location</label>
                     <input id="location" value="dublin, ireland">
                 </li>
+
                 <li>
                     <button>Search</button>
                 </li>

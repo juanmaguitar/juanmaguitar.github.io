@@ -2,12 +2,6 @@ $( document ).ready(function() {
 
 	var urlApiSearchVenues = "https://api.foursquare.com/v2/venues/search";
 	var urlApiDetailVenue = "https://api.foursquare.com/v2/venues/<%ID%>/photos";
-    var aCategories = [
-        "4bf58dd8d48988d1e5931735", // Music Venue
-        "4bf58dd8d48988d1e7931735", // Jazz Club
-        "4bf58dd8d48988d1e8931735", // Piano Bar
-        "4bf58dd8d48988d1e9931735"  // Rock Club
-    ]
     var oVenues;
 
     $( "button" ).click(function(e) {
@@ -31,6 +25,7 @@ $( document ).ready(function() {
         }
 
         var location = $("#location").val();
+        var aCategories = $("#categories").val();
         var query = $("#musicGenre").val();
         var limit = $("#limit").val() || 100;
         var page = $("#page").val() || 1;
