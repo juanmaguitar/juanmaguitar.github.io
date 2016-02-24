@@ -51,7 +51,6 @@
 
 			var urlPlayer = "https://w.soundcloud.com/player/";
 			var sClientId = localStorage.getItem("soundcloudClientId");
-			var aTracks; // store streams ready to be played;
 			sClientId ? $("#client_id").val(sClientId) : null;
 
 			$("button").on("click", function(e) {
@@ -67,7 +66,7 @@
 
 				SC.initialize({
 					client_id: sClientId,
-					redirect_uri: 'http://localhost/callback.html'
+					redirect_uri: location.href + 'callback.html'
 				});
 
 				// initiate auth popup
