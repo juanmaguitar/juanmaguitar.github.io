@@ -1,73 +1,100 @@
 <!DOCTYPE html>
 <html lang="en-ca">
 <head>
-  <meta charset="utf-8">
-  <title>Test Instagram API</title>
-  <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-  	.hidden { display:none; }
-  </style>
+	<meta charset="utf-8">
+	<title>Test Instagram API</title>
+	<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<link rel="stylesheet" href="styles.css">
+	<style>
+		.hidden { display:none; }
+	</style>
 </head>
 <body>
+
+	<form>
+		<fieldset>
+			<legend>Insert your SoundCloud API data</legend>
+			<ul>
+					<li>
+							<label>Client ID</label>
+							<input id="client_id" size="50">
+					</li>
+			</ul>
+		</fieldset>
+	</form>
+
 	<button class="hidden" id="connect">connect!</button>
 
 	<div id="my-photos"></div>
 
-	<script type="template" id="card-instagram">
-		<div id="{{id}}" class="instagram_container">
-		    <div id="{{id}}">
-		        <a href="{{link}}" target="_blank" title="{{caption}} by {{username}}"> <img src="{{image}}" alt="{{caption}} by {{username}}" class="instagram_image" /> </a>
-		    </div>
-		    <div class="instagram_image_meta">
-		        <div class="likes instagram_image_meta_item">
-		            <p> <a class="icon-heart" href="{{link}}" target="_blank" title="{{caption}}">                {{likes}}               </a> </p>
-		        </div>
-		        <div class="comments instagram_image_meta_item">
-		            <p> <a class="icon-bubble" href="{{link}}" target="_blank" title="{{caption}}">                {{comments}}               </a> </p>
-		        </div>
-		        <div class="owner instagram_image_meta_item">
-		            <p>
-		                <a href="http://instagram.com/{{username}}" target="_blank" title="{{user_full-name}}"> <img src="{{username_profile_picture}}" class="owner_profile_picture" /> {{user_full-name}} </a>
-		            </p>
-		        </div>
-		        <div class="caption instagram_image_meta_item">
-		            <p> {{caption}} </p>
-		        </div>
-		    </div>
-		</div>
-	</script>
-  <script type="text/javascript">
 
-  	var currentUrl = location.href;
+	<!-- @begin card template -->
+	<template id="card-instagram">
+
+		<div id="{{id}}" class="instagram_container">
+				<div id="{{id}}">
+						<a href="{{link}}" target="_blank" title="{{caption}} by {{username}}"> <img src="{{image}}" alt="{{caption}} by {{username}}" class="instagram_image" /> </a>
+				</div>
+				<div class="instagram_image_meta">
+						<div class="likes instagram_image_meta_item">
+								<p>
+									<a class="icon-heart" href="{{link}}" target="_blank" title="{{caption}}">{{likes}}</a>
+								</p>
+						</div>
+						<div class="comments instagram_image_meta_item">
+								<p>
+									<a class="icon-bubble" href="{{link}}" target="_blank" title="{{caption}}">{{comments}}</a>
+								</p>
+						</div>
+						<div class="owner instagram_image_meta_item">
+								<p>
+									<a href="http://instagram.com/{{username}}" target="_blank" title="{{user_full-name}}"> <img src="{{username_profile_picture}}" class="owner_profile_picture" /> {{user_full-name}} </a>
+								</p>
+						</div>
+						<div class="caption instagram_image_meta_item">
+								<p> {{caption}} </p>
+						</div>
+				</div>
+		</div>
+	</template>
+	<!-- @end card template -->
+
+	<script type="text/javascript">
+
+		var currentUrl = location.href;
 		var token, sUrlRecentPhotos;
 		var sCardTemplate = $("#card-instagram").html();
+		var sClientId;
+
+		sClientId = localStorage.getItem("instagramClientId");
+		sClientId ? $("#client_id").val(sClientId) : "";
 
 		if ( currentUrl.indexOf("#access_token=") != -1 ) {
 			token = currentUrl.split("#access_token=")[1]
 		}
 
-
-
-		// https://www.instagram.com/oauth/authorize/?client_id=c3db60b60d0248cea591fa53fc24ebe2&redirect_uri=http://localhost/&response_type=token
-
-	//	https://api.instagram.com/v1/users/2094276/media/recent?access_token=2094276.c3db60b.b4fa20b65f18422280ff007594318f88
-
 		var sUrlApiInstgram = "https://api.instagram.com/oauth/authorize/";
-		sUrlApiInstgram += "?client_id=c3db60b60d0248cea591fa53fc24ebe2";
-		sUrlApiInstgram += "&redirect_uri=" + "http://localhost" // location.href;
+		sUrlApiInstgram += "?client_id=<%CLIENT-ID%>";
+		sUrlApiInstgram += "&redirect_uri=<%REDIRECT-URL%>"
 		sUrlApiInstgram += "&response_type=token";
+
+		console.log (sClientId)
+		console.log (currentUrl)
 
 		if (token) {
 
 			sUrlRecentPhotos = "https://api.instagram.com/v1/users/2094276/media/recent";
 			sUrlRecentPhotos += "?access_token=" + token
+
 			$.ajax({
 				url: sUrlRecentPhotos,
 				dataType: "jsonp",
 				success: function(oData) {
 					var aPhotos = oData.data;
 					var sHtmlTotal = "", sHtmlCard;
+
+					localStorage.setItem("instagramClientId",sClientId);
+
 					$.each(aPhotos, function(index, oPhoto) {
 						oPhoto.caption ? null : $.extend(oPhoto, { caption : { text : "" } } );
 						sHtmlCard = sCardTemplate;
@@ -91,21 +118,31 @@
 		}
 		else {
 
-		  $("#connect")
-		  	.on("click", function(){
-		  		window.location.replace(sUrlApiInstgram);
-		  	})
-		  	.removeClass("hidden");
+			$("#connect")
+
+				.on("click", function(e) {
+
+					e.preventDefault();
+
+					var sClientId = $("#client_id").val();
+
+					if (sClientId=="") {
+						alert("Please, write a valid SoundCloud API KEY");
+						return false;
+					}
+					else {
+						localStorage.setItem("instagramClientId",sClientId);
+					}
+
+					sUrlApiInstgram = sUrlApiInstgram.replace("<%CLIENT-ID%>", sClientId );
+					sUrlApiInstgram = sUrlApiInstgram.replace("<%REDIRECT-URL%>", currentUrl );
+
+					window.location.replace(sUrlApiInstgram);
+				})
+				.removeClass("hidden");
 
 		}
 
-
-
-		//https://api.instagram.com/v1/users/2094276/media/recent/?client_id=c3db60b60d0248cea591fa53fc24ebe2&token=2094276.c3db60b.b4fa20b65f18422280ff007594318f88
-
-
-		// http://localhost/#access_token=2094276.c3db60b.b4fa20b65f18422280ff007594318f88
-
-  </script>
+	</script>
 </body>
 </html>
