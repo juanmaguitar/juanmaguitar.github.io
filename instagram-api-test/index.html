@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+  <meta charset="utf-8">
+  <title>Test Instagram API</title>
+  <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+  	.hidden { display:none; }
+  </style>
+</head>
+<body>
+	<button class="hidden" id="connect">connect!</button>
+
+	<div id="my-photos"></div>
+
+	<script type="template" id="card-instagram">
+		<div id="{{id}}" class="instagram_container">
+		    <div id="{{id}}">
+		        <a href="{{link}}" target="_blank" title="{{caption}} by {{username}}"> <img src="{{image}}" alt="{{caption}} by {{username}}" class="instagram_image" /> </a>
+		    </div>
+		    <div class="instagram_image_meta">
+		        <div class="likes instagram_image_meta_item">
+		            <p> <a class="icon-heart" href="{{link}}" target="_blank" title="{{caption}}">                {{likes}}               </a> </p>
+		        </div>
+		        <div class="comments instagram_image_meta_item">
+		            <p> <a class="icon-bubble" href="{{link}}" target="_blank" title="{{caption}}">                {{comments}}               </a> </p>
+		        </div>
+		        <div class="owner instagram_image_meta_item">
+		            <p>
+		                <a href="http://instagram.com/{{username}}" target="_blank" title="{{user_full-name}}"> <img src="{{username_profile_picture}}" class="owner_profile_picture" /> {{user_full-name}} </a>
+		            </p>
+		        </div>
+		        <div class="caption instagram_image_meta_item">
+		            <p> {{caption}} </p>
+		        </div>
+		    </div>
+		</div>
+	</script>
+  <script type="text/javascript">
+
+  	var currentUrl = location.href;
+		var token, sUrlRecentPhotos;
+		var sCardTemplate = $("#card-instagram").html();
+
+		if ( currentUrl.indexOf("#access_token=") != -1 ) {
+			token = currentUrl.split("#access_token=")[1]
+		}
+
+
+
+		// https://www.instagram.com/oauth/authorize/?client_id=c3db60b60d0248cea591fa53fc24ebe2&redirect_uri=http://localhost/&response_type=token
+
+	//	https://api.instagram.com/v1/users/2094276/media/recent?access_token=2094276.c3db60b.b4fa20b65f18422280ff007594318f88
+
+		var sUrlApiInstgram = "https://api.instagram.com/oauth/authorize/";
+		sUrlApiInstgram += "?client_id=c3db60b60d0248cea591fa53fc24ebe2";
+		sUrlApiInstgram += "&redirect_uri=" + "http://localhost" // location.href;
+		sUrlApiInstgram += "&response_type=token";
+
+		if (token) {
+
+			sUrlRecentPhotos = "https://api.instagram.com/v1/users/2094276/media/recent";
+			sUrlRecentPhotos += "?access_token=" + token
+			$.ajax({
+				url: sUrlRecentPhotos,
+				dataType: "jsonp",
+				success: function(oData) {
+					var aPhotos = oData.data;
+					var sHtmlTotal = "", sHtmlCard;
+					$.each(aPhotos, function(index, oPhoto) {
+						oPhoto.caption ? null : $.extend(oPhoto, { caption : { text : "" } } );
+						sHtmlCard = sCardTemplate;
+						sHtmlCard = sHtmlCard.replace(/\{\{id\}\}/g, oPhoto.id);
+						sHtmlCard = sHtmlCard.replace(/\{\{link\}\}/g, oPhoto.link);
+						sHtmlCard = sHtmlCard.replace(/\{\{caption\}\}/g, oPhoto.caption.text);
+						sHtmlCard = sHtmlCard.replace(/\{\{image\}\}/g, oPhoto.images.standard_resolution.url);
+						sHtmlCard = sHtmlCard.replace(/\{\{comments\}\}/g, oPhoto.comments.count);
+						sHtmlCard = sHtmlCard.replace(/\{\{likes\}\}/g, oPhoto.likes.count);
+						sHtmlCard = sHtmlCard.replace(/\{\{username\}\}/g, oPhoto.user.username);
+						sHtmlCard = sHtmlCard.replace(/\{\{username_profile_picture\}\}/g, oPhoto.user.profile_picture);
+						sHtmlCard = sHtmlCard.replace(/\{\{user_full-name\}\}/g, oPhoto.user.full_name);
+						sHtmlCard = sHtmlCard.replace(/\@\{\{model\.user\.full_name\}\}/g, oPhoto.user.full_name);
+						console.log (oPhoto);
+						sHtmlTotal += sHtmlCard;
+					})
+					$("#my-photos").html(sHtmlTotal);
+				}
+			});
+
+		}
+		else {
+
+		  $("#connect")
+		  	.on("click", function(){
+		  		window.location.replace(sUrlApiInstgram);
+		  	})
+		  	.removeClass("hidden");
+
+		}
+
+
+
+		//https://api.instagram.com/v1/users/2094276/media/recent/?client_id=c3db60b60d0248cea591fa53fc24ebe2&token=2094276.c3db60b.b4fa20b65f18422280ff007594318f88
+
+
+		// http://localhost/#access_token=2094276.c3db60b.b4fa20b65f18422280ff007594318f88
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+#my-photos {
+		text-align: center
+}
+#my-photos .instagram_container {
+		margin: 0 auto;
+		margin-top: 1em;
+		margin-bottom: 2em
+}
+#my-photos .instagram_container .instagram_image {
+		width: 100%
+}
+#my-photos .instagram_image_meta {
+		font-family: "Interstate Bold", sans-serif
+}
+#my-photos .instagram_image_meta a {
+		text-decoration: none
+}
+#my-photos .instagram_image_meta .instagram_image_meta_item {
+		display: inline-block;
+		width: 49%;
+		background-color: #cccccc;
+		height: 30px;
+		-webkit-border-radius: 0 0 5px 5px;
+		border-radius: 0 0 5px 5px
+}
+#my-photos .instagram_image_meta .instagram_image_meta_item p {
+		margin: 0
+}
+#my-photos .instagram_image_meta .instagram_image_meta_item a {
+		display: block;
+		height: 30px;
+		width: 100%;
+		margin-top: 8px;
+		color: #7a7a7a;
+		font-size: .8em
+}
+#my-photos .instagram_image_meta .instagram_image_meta_item a:hover {
+		color: #353535
+}
+#my-photos .instagram_image_meta .instagram_image_meta_item.caption {
+		display: block;
+		background-color: transparent;
+		width: 100%;
+		text-align: left;
+		font-family: Interstate Light, sans-serif;
+		font-size: .9em;
+		margin: .5em
+}
+@media (min-width: 59em) {
+		#my-photos .instagram_image_meta .instagram_image_meta_item.caption {
+				display: inline
+		}
+}
+#my-photos .instagram_image_meta .instagram_image_meta_item.owner {
+		background-color: transparent;
+		display: inline-block;
+		float: right;
+		font-size: .8em;
+		text-align: right;
+		margin-top: .6em
+}
+#my-photos .instagram_image_meta .instagram_image_meta_item.owner a {
+		display: inline;
+		font-size: .9em
+}
+#my-photos .instagram_image_meta .instagram_image_meta_item.owner .owner_profile_picture {
+		width: 20px;
+		margin-top: -1px
+}
+@media (min-width: 59em) {
+		#my-photos .instagram_image_meta .instagram_image_meta_item.owner {
+				margin-top: 10px
+		}
+		#my-photos .instagram_image_meta .instagram_image_meta_item.owner a {
+				color: #7a7a7a
+		}
+}
+@media (min-width: 59em) {
+		#my-photos .instagram_image_meta .instagram_image_meta_item {
+				width: auto;
+				margin-right: 10px;
+				background-color: transparent
+		}
+		#my-photos .instagram_image_meta .instagram_image_meta_item a {
+				color: black
+		}
+		#my-photos .instagram_image_meta .instagram_image_meta_item a:before {
+				color: #ff4e33
+		}
+}
+@media (min-width: 59em) {
+		#my-photos .instagram_image_meta {
+				text-align: left
+		}
+}
+@media (min-width: 59em) {
+		#my-photos {
+				max-width: 500px;
+				margin: 0 auto;
+				text-align: left
+		}
+}
