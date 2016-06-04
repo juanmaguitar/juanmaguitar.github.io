@@ -28,7 +28,7 @@ angular
 		};
 
         this.paged = function (valLists, pageSize) {
-            console.log (valLists);
+            //console.log (valLists);
     		/* TO-DO: Apply reduce */
             retVal = [];
             for (var i = 0; i < valLists.length; i++) {

@@ -4,6 +4,7 @@ angular
 
         $scope.pageSize = 10;
         $scope.reverse = true;
+        $scope.numberLastPage = 0;
 
         remotePeopleFactory.getPeople()
             .then( function(result) {
@@ -29,8 +30,10 @@ angular
 
         // Calculate Total Number of Pages based on Search Result
         function pagination() {
-        	console.log ($scope.filteredList);
+
             $scope.ItemsByPage = filteredListService.paged($scope.filteredList, $scope.pageSize);
+            $scope.numberLastPage = $scope.ItemsByPage.length - 1;
+            showLog();
         };
 
         // $scope.add = function () {
@@ -53,17 +56,25 @@ angular
         }
 
 
+        $scope.isActive = function ( pageNumber ) {
+            console.log ( "pageNumber ->" + pageNumber );
+            console.log ( "$scope.currentPage ->" + $scope.currentPage );
+            return (pageNumber == $scope.currentPage);
+        }
 
         $scope.setPage = function () {
             $scope.currentPage = this.n;
+            showLog();
         };
 
         $scope.firstPage = function () {
             $scope.currentPage = 0;
+            showLog();
         };
 
         $scope.lastPage = function () {
-            $scope.currentPage = $scope.ItemsByPage.length - 1;
+            $scope.currentPage = $scope.ItemsByPage.length-1;
+            showLog();
         };
 
         $scope.range = function (input, total) {
@@ -93,22 +104,26 @@ angular
             if ($scope.reverse) iconName = 'glyphicon glyphicon-chevron-up';
             else iconName = 'glyphicon glyphicon-chevron-down';
 
-            if (sortBy === '_id') {
+            if (sortBy === 'index') {
                 $scope.Header[0] = iconName;
-            } else if (sortBy === 'name') {
+            }
+            else if (sortBy === '_id') {
                 $scope.Header[1] = iconName;
-            } else {
+            }
+            else if (sortBy === 'name') {
                 $scope.Header[2] = iconName;
             }
-
-
+            else {
+                $scope.Header[3] = iconName;
+            }
 
             pagination();
-            showLog();
         };
 
         function showLog() {
             console.log ("reverse: " +$scope.reverse );
+            console.log ("currentPage: " +$scope.currentPage );
+            console.log ("numberLastPage: " +$scope.numberLastPage );
         }
 
     });

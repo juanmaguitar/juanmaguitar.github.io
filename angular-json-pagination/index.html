@@ -37,28 +37,34 @@
 			<table class="table  table-hover data-table myTable">
 				<thead>
 					<tr>
+						<th class="index">
+							<a href="#" ng-click="sort('index')">Index
+								<span class="{{ Header[0] }}"></span>
+							</a>
+						</th>
 						<th class="_id">
 							<a href="#" ng-click="sort('_id',$event)">Id
-								<span class="{{Header[0]}}"></span>
+								<span class="{{ Header[1] }}"></span>
 							</a>
 						</th>
 						<th class="name">
 							<a ng-click="sort('name')" href="#"> Name
-								<span class="{{Header[1]}}"></span>
+								<span class="{{ Header[2] }}"></span>
 							</a>
 						</th>
 						<th class="email">
 							<a ng-click="sort('email')" href="#"> Email
-								<span class="{{Header[2]}}"></span>
+								<span class="{{ Header[3] }}"></span>
 							</a>
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="item in ItemsByPage[currentPage] | orderBy:columnToOrder:reverse">
-						<td>{{item._id}}</td>
-						<td>{{item.name}}</td>
-						<td>{{item.email}}</td>
+						<td>{{ item.index }}</td>
+						<td>{{ item._id }}</td>
+						<td>{{ item.name }}</td>
+						<td>{{ item.email }}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -66,13 +72,13 @@
 
 			<!-- @begin pagination -->
 			<ul class="pagination pagination-sm">
-				<li ng-class="{active:0}">
+				<li ng-class="{ active: isActive(0) }">
 					<a href="#" ng-click="firstPage()">First</a>
 				</li>
-				<li ng-repeat="n in range(ItemsByPage.length)">
-					<a href="#" ng-click="setPage()" ng-bind="n+1">1</a>
+				<li ng-repeat="n in range(ItemsByPage.length)" ng-class="{ active: isActive(n) }">
+					<a href="#" ng-click="setPage()" ng-bind="n+1" >1</a>
 				</li>
-				<li>
+				<li ng-class="{ active: isActive( numberLastPage ) }">
 					<a href="#" ng-click="lastPage()">Last</a>
 				</li>
 			</ul>
