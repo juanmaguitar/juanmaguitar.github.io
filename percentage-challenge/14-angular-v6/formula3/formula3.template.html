@@ -1,0 +1,13 @@
+<form id="f3" action="#" class="form-group">
+  <fieldset class="row">
+		<div class="col-md-6">
+			<p>What is the percentage increase/decrease<br>from <input id="f3-a" ng-model="a" type="number" size="6"> to <input id="f3-b" ng-model="b" type="number" size="6">?</p>
+		</div>
+		<div class="col-md-6">
+      <button id="f3-calculate" ng-click="getResult()" class="btn btn-primary">Calculate</button>
+      <!-- result = (b - a) / a  * 100; -->
+      <input id="f3-result" ng-model="result" type="number" size="7" readonly="readonly">
+      <span>%</span>
+		</div>
+  </fieldset>
+</form>

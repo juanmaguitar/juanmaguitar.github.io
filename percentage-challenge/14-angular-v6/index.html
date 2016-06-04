@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Percentage Calculator</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+
+	<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+	<script src="app.js"></script>
+
+	<script src="formula1/formula1.module.js"></script>
+	<script src="formula1/formula1.component.js"></script>
+
+	<script src="formula2/formula2.module.js"></script>
+	<script src="formula2/formula2.component.js"></script>
+
+	<script src="formula3/formula3.module.js"></script>
+	<script src="formula3/formula3.component.js"></script>
+
+	<script src="common/services.js"></script>
+</head>
+<body>
+
+	<div class="container">
+
+		<section id="my-forms">
+
+				<block-formula-one></block-formula-one>
+				<block-formula-two></block-formula-two>
+				<block-formula-three></block-formula-three>
+
+	      <p id="tips"><strong>Tips:</strong> Use tab to move to the next field. Use shift-tab to move to the previous field. Press enter to calculate.</p>
+	    </section>
+
+	</div>
+
+</body>
+</html>
