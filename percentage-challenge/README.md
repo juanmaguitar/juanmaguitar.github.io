@@ -27,7 +27,7 @@ $('#f1-calculate').on('click', function(event) {
 [run it](http://juanmaguitar.github.io/percentage-challenge/02-jquery-v2) | [see the code](https://github.com/juanmaguitar/juanmaguitar.github.io/tree/master/percentage-challenge/02-jquery-v2)
 
 
-This solution changes the type of the `input` to `type="text"` to read directly numbers from the inputs (and avoid the use of `parseInt`)
+This solution changes the type of the `input` to `type="number"` to read directly numbers from the inputs (and avoid the use of `parseInt`)
 
 ```javascript
 $('#f1-calculate').on('click', function(event) {
@@ -228,7 +228,7 @@ To do that we specify the module that will handle the app
 <html lang="en" ng-app="myApp">
 ```
 
-And we add to that module the `controller that will add the functions to the `$scope`
+And we add to that module the `controller` that will add the functions to the `$scope`
 
 ```javascript
 angular.module('myApp', [])
