@@ -440,3 +440,24 @@ angular
   </fieldset>
 </form>
 ```
+
+
+## Extra: 00- Native Javascript
+
+[run it](http://juanmaguitar.github.io/percentage-challenge/00-native-javascript) | [see the code](https://github.com/juanmaguitar/juanmaguitar.github.io/tree/master/percentage-challenge/00-native-javascript)
+
+As an extra, you also have the javascript solution _without using any framework_, just raw native javascript (this is, you don't need to load any library/framework to execute this code)
+
+```javascript
+/* Formula 1 => a / 100 * b */
+var buttonF1 = document.getElementById('f1-calculate');
+buttonF1.addEventListener('click', function(e) {
+        e.preventDefault();
+        var inputA = document.getElementById('f1-a');
+        var inputB = document.getElementById('f1-b');
+        var inputResult = document.getElementById('f1-result');
+        var result = (inputA.value/100) * inputB.value;
+        inputResult.value = result
+
+})
+```
