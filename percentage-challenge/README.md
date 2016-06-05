@@ -8,7 +8,7 @@ This folder contains a set of 15 solutions for the same project.
 
 [run it](http://juanmaguitar.github.io/percentage-challenge/01-jquery) | [see the code](https://github.com/juanmaguitar/juanmaguitar.github.io/tree/master/percentage-challenge/01-jquery)
 
-This solution uses the jQuery library to listen to the "click" event and access the different elements in the page to perform the operations.
+This solution uses the jQuery library to listen to the `click` event of each button and access the different elements in the page to perform the operations.
 
 The `input` fields have the attribute `type="text"` so we need to to transform the strings obtained when reading the values to numbers (with [`parseInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt))
 
