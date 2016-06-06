@@ -57,8 +57,6 @@ angular
 
 
         $scope.isActive = function ( pageNumber ) {
-            console.log ( "pageNumber ->" + pageNumber );
-            console.log ( "$scope.currentPage ->" + $scope.currentPage );
             return (pageNumber == $scope.currentPage);
         }
 

@@ -2,6 +2,8 @@
 
 ##Description 
 
+https://api.themoviedb.org/3/movie/550?api_key=ba09f3c8c6c830377b422df18cfa833e
+
 This project is based on the one at: https://github.com/lillylangtree/mdb-initial.git
 
 This project is a initial version of a student project used for

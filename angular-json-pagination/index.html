@@ -72,13 +72,13 @@
 
 			<!-- @begin pagination -->
 			<ul class="pagination pagination-sm">
-				<li ng-class="{ active: isActive(0) }">
+				<li ng-class="{ active: isActive(0) }" ng-show="numberLastPage">
 					<a href="#" ng-click="firstPage()">First</a>
 				</li>
 				<li ng-repeat="n in range(ItemsByPage.length)" ng-class="{ active: isActive(n) }">
 					<a href="#" ng-click="setPage()" ng-bind="n+1" >1</a>
 				</li>
-				<li ng-class="{ active: isActive( numberLastPage ) }">
+				<li ng-class="{ active: isActive( numberLastPage ) }" ng-show="numberLastPage">
 					<a href="#" ng-click="lastPage()">Last</a>
 				</li>
 			</ul>
