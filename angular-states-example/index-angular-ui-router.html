@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular UI router Demo</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+</head>
+<body>
+
+
+<div ng-app="wizardApp">
+  <div ng-controller="WizardSignupController">
+    <h2>Signup wizard</h2>
+    <div ui-view></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  angular.module('wizardApp', [
+    'ui.router',
+    'wizardapp.controllers'
+    ])
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/wizard/start');
+
+    $stateProvider
+      .state('wizard', {
+        abstract: true,
+        url: '/wizard',
+        template: '<div>\
+          <div ui-view></div>\
+          </div>'
+      })
+      .state('wizard.start', {
+        url: '/start',
+        template: '<h3>Step 1</h3>\
+          <form ng-submit="">\
+          <input type="text" ng-model="user.name" placeholder="Your name" />\
+          <input type="submit" class="button" value="Next" ui-sref="wizard.email"/>\
+          </form>\
+        '
+      })
+      .state('wizard.email', {
+        url: '/email',
+        template: '<h3>Step 2</h3>\
+          <form ng-submit="">\
+          <input type="email" ng-model="user.email" placeholder="Your email" />\
+          <input type="submit" class="button" value="Next" ui-sref="wizard.finish"/>\
+          </form>\
+        '
+      })
+      .state('wizard.finish', {
+        url: '/complete',
+        template: '<h3>Congrats! You signed up!</h3>\
+          <h5>Your name: {{ user.name }}</h5>\
+          <h5>Your email: {{ user.email }}</h5>\
+          <a class="button" ui-sref="wizard.start">Start over</a> \
+        ',
+        controller: function($scope) {
+          $scope.signup();
+        }
+      })
+  }]);
+  angular.module('wizardapp.controllers', [])
+  .controller('WizardSignupController', ['$scope', '$state', function($scope, $state) {
+    $scope.user = {};
+    $scope.signup = function() {
+    }
+  }]);
+</script>
+
+
+
+
+</body>
+</html>

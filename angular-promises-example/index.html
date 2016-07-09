@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script>
+
+
+
+		angular.module('myApp', ['myControllers']);
+
+		angular.module('myControllers', ['myServices'])
+			.controller('testController', function($scope, testService){
+				var myNumber = testService.getNumber();
+				$scope.name = "juanma";
+				$scope.clientsNames = ['Hilde Rusen', 'Zoraida', 'Cecelia Jonke', 'Abbie Ream'];
+				console.log ("just checking ___" + myNumber);
+			})
+			.controller('testControllerTwo', function($scope, $http ){
+
+				var url = "https://api.github.com/users/juanmaguitar/repos";
+
+				function showConsole(remoteData) {
+					console.log ("showConsole");
+					console.log (remoteData);
+					return remoteData.data;
+				}
+
+				function filterAngularRepos(remoteData) {
+					console.log ("showConsoleAgain");
+					console.log (remoteData);
+					return remoteData.filter( function(oRepo) {
+						return oRepo.name.indexOf("angular") != -1;
+					});
+				}
+
+				function filterProjectRepos(remoteData) {
+					console.log ("andAgain");
+					console.log (remoteData);
+					return remoteData.filter( function(oRepo) {
+						return oRepo.name.indexOf("project") != -1;
+					});
+
+				}
+
+				function showSpecificInfo(remoteData) {
+					var currentObject = remoteData[0];
+					console.log ("andLastTime");
+					console.log (currentObject.id);
+					console.log (currentObject.name);
+					console.log (currentObject.size);
+				}
+
+				$http.get(url)
+					.then( showConsole )
+					.then( filterAngularRepos )
+					.then( filterProjectRepos )
+					.then( showSpecificInfo )
+
+			})
+
+		angular.module('myServices', [])
+			.service('testService', function(){
+				return {
+					getNumber : function() {
+						return 3 + 45;
+					}
+				}
+			})
+			.service('remoteData', function($http){
+				return {
+					getData : function(url) {
+						return $http.get(url)
+					}
+				}
+			})
+
+	</script>
+</head>
+<body>
+
+	<div ng-controller="testController">
+
+		Hello {{ name }}
+
+		<ul>
+			<li ng-repeat="name in clientsNames">
+					name : <strong>{{ name }}</strong>
+			</li>
+		</ul>
+
+	</div>
+
+
+	<div ng-controller="testControllerTwo"></div>
+
+
+</body>
+</html>

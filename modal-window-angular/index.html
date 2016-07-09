@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <script src="https://code.angularjs.org/1.3.0-beta.5/angular.js"></script>
+    <script src="angular-ui-tpl.js"></script>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <script src="app.js"></script>
+  </head>
+
+  <body>
+
+    <div ng-controller="ModalDemoCtrl">
+
+			<!-- @begin template -->
+  	  <script type="text/ng-template" id="myModalContent.html">
+      	<div>default modal content</div>
+      	<div>But scope is accessable here: {title} = {{title}}</div>
+      	<div>But methods are here to: ok(); =
+      	<button type="button" class="btn btn-primary" ng-click="ok($event)">ok($event)</button></div>
+      </script>
+			<!-- @end template -->
+
+	    <button class="btn btn-default" ng-click="open()">Open me!</button>
+
+    </div>
+  </body>
+
+</html>
