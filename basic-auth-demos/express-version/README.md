@@ -1,5 +1,11 @@
 # Basic Auth w/ Express & Node
 
+To install dependencies do
+
+```
+npm install
+```
+
 This example is based on the infojobs API and requires having a `.env` file w/ data like this
 
 ```
