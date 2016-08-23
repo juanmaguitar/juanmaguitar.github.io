@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-ca" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>Angular Basic Auth Demo</title>
+</head>
+<body ng-controller="myCtrl">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<!-- <script src="services/index.js"></script>
+	<script src="services/Base64.js"></script>
+	<script src="services/DataLoader.js"></script>
+	<script src="controllers/index.js"></script>
+	<script src="controllers/myCtrl.js"></script>
+	 --><script>
+			angular.module("myApp", [])
+				.controller('myCtrl', function($scope, $http ) {
+
+						var url = 'https://api.infojobs.net/api/1/offer';
+				    var username = 'ce6a08f744ab4d1db3761a3c8f2dc1c0';
+				    var password = 'e8hFf5kmoJ1PYQmq2IoKri1l7xQVFwvhoaR8A30hz5x5U+yWI7';
+				    var base64 = btoa(username+':'+password);
+						console.log (base64);
+
+						//$http.defaults.headers.common['Authorization'] = 'Basic ' + base64;
+				    console.log ($http)
+
+				    $http.get(url, {
+							  headers: {
+							  	'Authorization': 'Basic ' + base64,
+							  	'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8',
+							  	'Access-Control-Allow-Headers': 'Content-Type, Accept, X-Requested-With, Session',
+							   	'Access-Control-Allow-Origin': '*'
+							  },
+							})
+				    	.then(function(data) {
+						  	console.log(data);
+							});
+
+
+
+				    // // use our Base64 service to encode the user/pass
+				    // var base64 = Base64.encode( username + ':' + password );
+				    // // Some endpoint that needs auth
+				    // var dataURL = 'https://api.infojobs.net/api/1/offer';
+
+				    //   DataLoader.getAuth( base64, dataURL )
+				    //     .then(function(response) {
+				    //         $scope.data = response.data;
+				    //       }, function(response) {
+				    //         console.log('Error');
+				    //     });
+
+				  });
+
+	</script>
+</body>
+</html>
