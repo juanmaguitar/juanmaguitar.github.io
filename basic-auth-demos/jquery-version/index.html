@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Basic Auth Demo</title>
+</head>
+<body>
+	<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script>
+
+		console.log ($.support.cors );
+
+		var URL_API = 'https://api.infojobs.net/api/1/offer';
+		var CLIENT_ID = 'ce6a08f744ab4d1db3761a3c8f2dc1c0';
+		var CLIENT_SECRET = 'e8hFf5kmoJ1PYQmq2IoKri1l7xQVFwvhoaR8A30hz5x5U+yWI7';
+		var auth = CLIENT_ID + ":" + CLIENT_SECRET;
+
+		// var url = URL_API.replace('://', '://' + CLIENT_ID + ":" + CLIENT_SECRET + '@');
+		// console.log (url);
+
+		console.log (URL_API);
+		$.ajax({
+			type: "GET",
+			crossDomain: true,
+			beforeSend: function (xhr) {
+					xhr.withCredentials = true;
+					xhr.setRequestHeader('Authorization', 'Basic ' + auth);
+			},
+			url: URL_API
+		})
+		.done(function( data ) {
+			console.log( data );
+		})
+		.fail(function( err ) {
+			console.log( err);
+		})
+		.always(function() {
+			console.log("completed...");
+		});
+
+	</script>
+</body>
+</html>

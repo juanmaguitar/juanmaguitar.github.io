@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="initial-scale=1">
+	<meta charset="UTF-8">
+	<title>Clock</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+
+
+	<style>
+		p { text-align: center; margin: 0; }
+		.clock { font-size: 20vw;  }
+		.timezone { font-size: 8vw; margin-top: -5%;}
+		.convert {  margin: 20px;}
+		.convert p {  font-size: 2em; }
+		.convert select { width: 50%; margin:0 auto;  }
+
+		@media (min-width: 768px) {
+			.convert p { text-align: right;  width: 50%; display: inline-block;  }
+			.convert > div { display: inline-block; width: 25%; position: relative;}
+			.convert > div > div { position: absolute; top: -25px; left: 10px; }
+		}
+		@media (max-width: 768px) {
+			.convert p { font-size:6vw; margin-bottom: 10px;}
+			.bootstrap-select li, .bootstrap-select span { font-size:4vw; }
+		}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<p class="clock"><span></span>:<span></span>:<span></span></p>
+		<p class="timezone"></p>
+		<div class="row convert">
+			<p>Convert to timezone</p>
+			<div>
+				<select class="form-control selectpicker" data-live-search="true">
+					<option value="">Select an option...</option>
+				</select>
+			</div>
+		</p>
+		</div>
+
+	</div>
+
+</body>
+	<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.4.1/moment-timezone-with-data-2010-2020.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.js"></script>
+	<script src="main.js"></script>
+
+<script>
+
+// 	$(function(){
+// 		  setTimeout(function(){
+
+// 		    var time = moment.utc();
+// 		    console.log (time);
+// 		    var formattedTime = time.format('YYYY-MM-DD HH:mm:ss')
+// 		    console.log (formattedTime);
+
+// 		    //get text from divUTC and conver to local timezone
+// 		    var localTime  = moment.utc( formattedTime ).toDate();
+// 		    console.log (localTime);
+// 		    localTime = moment(localTime).format('YYYY-MM-DD HH:mm:ss');
+// 		    console.log (localTime);
+
+// 		    var thaiTime = moment.tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss');
+// 		    var laTime = moment.tz('America/Los_Angeles').format('YYYY-MM-DD HH:mm:ss');
+
+// 		  },1000);
+// });
+
+</script>
+
+
+<script>
+
+		var oTimezone = jstz.determine();
+		var timezoneName = oTimezone.name();
+
+		var currentTime = new Date();
+		var hour = currentTime.getHours();
+		var minute = currentTime.getMinutes();
+		var second = currentTime.getSeconds();
+
+		function pad(d) {
+		    return (d < 10) ? '0' + d.toString() : d.toString();
+		}
+
+		function displayTime( hour, minute, second ) {
+
+			var $timeSpots = $("p.clock span");
+
+			$timeSpots.eq(0).text( pad(hour) );
+			$timeSpots.eq(1).text( pad(minute) );
+			$timeSpots.eq(2).text( pad(second) );
+
+		}
+
+		function updateTime() {
+			second++;
+			if (second >= 60) {
+				minute++; second = 0;
+			}
+			if (minute >= 60) {
+				hour++; minute = 0;
+			}
+			if (hour >= 24) {
+				hour=0;
+			}
+			displayTime( hour, minute, second );
+		}
+
+		$("p.timezone").html(timezoneName)
+		displayTime( hour, minute, second );
+		var interval = setInterval (updateTime, 1000);
+
+	</script>
+</html>
