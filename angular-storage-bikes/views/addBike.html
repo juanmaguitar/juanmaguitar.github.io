@@ -1,0 +1,17 @@
+<h1>{{ title }}</h1>
+
+<form ng-submit="addBike($event)" action="" method="POST" role="form">
+	<legend>Form title</legend>
+
+	<div class="form-group">
+		<label for="">Brand</label>
+		<input ng-model="brand" type="text" class="form-control" id="" placeholder="Input field">
+	</div>
+
+	<div class="form-group">
+		<label for="">Model</label>
+		<input ng-model="model" type="text" class="form-control" id="" placeholder="Input field">
+	</div>
+
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
